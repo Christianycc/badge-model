@@ -1,7 +1,9 @@
 package org.chris.badges.wallet.model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import javax.print.attribute.HashPrintJobAttributeSet;
 import java.io.File;
 import java.util.Date;
 
@@ -98,5 +100,29 @@ public class DigitalBadge implements Comparable<DigitalBadge> {
                 .append(this.serial,that.serial)
                 .append(this.end,that.end).isEquals();
 
+    }
+    @Override
+    public int compareTo(DigitalBadge other){
+        return this.metadata.compareTo(other.metadata);
+    }
+    @Override
+    public int hashCode(){
+        return  new HashCodeBuilder(17,37)
+                .append(this.serial)
+                .append(this.end)
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "DigitalBadge{" +
+                "metadata=" + metadata +
+                ", badge=" + badge +
+                ", serial='" + serial + '\'' +
+                ", Description='" + Description + '\'' +
+                ", begin=" + begin +
+                ", end=" + end +
+                ", serializeHash=" + serializeHash +
+                '}';
     }
 }
